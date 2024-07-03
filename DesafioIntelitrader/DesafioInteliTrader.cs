@@ -9,23 +9,32 @@ namespace DesafioIntelitrader
 {
     public class DesafioInteliTrader
     {
-        public Byte[] GetBytesFromBinaryString(String binary)
+        public string BitsToAscii(string bits)
         {
-            var list = new List<Byte>();
+            StringBuilder result = new StringBuilder();
 
-            for (int i = 0; i < binary.Length; i += 8)
+            // Iterar pela string de bits em incrementos de 8
+            for (int i = 0; i < bits.Length; i += 8)
             {
-                String t = binary.Substring(i, 8);
+                string eightBits = bits.Substring(i, 8); // Pegar o próximo grupo de 8 bits
 
-                list.Add(Convert.ToByte(t, 2));
+                // Converter os 8 bits para um número inteiro
+                int decimalValue = Convert.ToInt32(eightBits, 2);
+
+                // Converter o número inteiro para o caractere ASCII correspondente
+                char asciiChar = Convert.ToChar(decimalValue);
+
+                // Adicionar o caractere ASCII ao resultado
+                result.Append(asciiChar);
             }
 
-            return list.ToArray();
+            return result.ToString();
         }
+        
         public string Desafio1(string str )
         {   
-            //var txt=str;
-            var txt = "abcdefghijklmnop";
+            var txt=str.Replace(" ","");
+            //var txt = "abcdefghijklmnop";
             Console.WriteLine(txt.Length);
             var charA = txt.ToCharArray();
 
@@ -106,16 +115,18 @@ namespace DesafioIntelitrader
                 index += 2;
 
             }
-            string bin="";
-            list2.ForEach((i) => Console.WriteLine(i)); 
-            //list2.ForEach((i) =>bin+=i);
-
-
+            String bin="";
             
-            /*var data = GetBytesFromBinaryString(bin);
-            var text = Encoding.ASCII.GetString(data);*/
-            //Console.WriteLine(bin);
-            Console.WriteLine(bin.Length);
+            list2.ForEach((i) =>bin+=i);
+            //Console.WriteLine(bin=="efhgabcdmnpoijkl");
+
+            Console.WriteLine(BitsToAscii(bin));
+            Console.WriteLine(BitsToAscii(txt));
+
+
+            //var data = GetBytesFromBinaryString(bin);
+            //var text = Encoding.ASCII.GetString(data);
+            //Console.WriteLine(text);
             return bin;
         }
 
