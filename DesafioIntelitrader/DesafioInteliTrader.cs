@@ -9,10 +9,22 @@ namespace DesafioIntelitrader
 {
     public class DesafioInteliTrader
     {
+        public Byte[] GetBytesFromBinaryString(String binary)
+        {
+            var list = new List<Byte>();
 
-        public string Desafio1(StringBuilder str )
+            for (int i = 0; i < binary.Length; i += 8)
+            {
+                String t = binary.Substring(i, 8);
+
+                list.Add(Convert.ToByte(t, 2));
+            }
+
+            return list.ToArray();
+        }
+        public string Desafio1(string str )
         {   
-            var msg=str.ToString().Trim();
+            //var txt=str;
             var txt = "abcdefghijklmnop";
             Console.WriteLine(txt.Length);
             var charA = txt.ToCharArray();
@@ -52,7 +64,7 @@ namespace DesafioIntelitrader
 
             }
             var txt2=new String(charA);
-            Console.WriteLine(txt2);
+            //Console.WriteLine(txt2);
             rep = 0;
             index = 0;
 
@@ -87,18 +99,24 @@ namespace DesafioIntelitrader
             for (int i = 0; i < list.Count/2; i++)
             {
 
-                var prim=list.ElementAt(i);
-                var seg= list.ElementAt(i+1);
+                var prim=list.ElementAt(index);
+                var seg= list.ElementAt(index+1);
                 list2.Add(seg);
                 list2.Add(prim);
                 index += 2;
 
             }
+            string bin="";
+            list2.ForEach((i) => Console.WriteLine(i)); 
+            //list2.ForEach((i) =>bin+=i);
+
+
             
-            //list.ForEach((i) =>Console.WriteLine(i));
-
-
-            return "";
+            /*var data = GetBytesFromBinaryString(bin);
+            var text = Encoding.ASCII.GetString(data);*/
+            //Console.WriteLine(bin);
+            Console.WriteLine(bin.Length);
+            return bin;
         }
 
     }
