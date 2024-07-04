@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DesafioIntelitrader
 {
-    public class DesafioInteliTrader
+    internal class CriptografiaNavio
     {
         public string BitsToAscii(string bits)
         {
@@ -31,7 +31,7 @@ namespace DesafioIntelitrader
             return result.ToString();
         }
         
-        public string Desafio1(string str )
+        public string Main(string str )
         {
             var index = 0;
             var txt=str.Replace(" ","");
