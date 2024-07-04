@@ -32,25 +32,44 @@ namespace DesafioIntelitrader
         }
         
         public string Desafio1(string str )
-        {   
+        {
+            var index = 0;
             var txt=str.Replace(" ","");
             //var txt = "abcdefghijklmnop";
             Console.WriteLine(txt.Length);
             var charA = txt.ToCharArray();
-
+            //subistituindo ultimo e penultimo
             var rep = txt.Length / 8;
             Console.WriteLine("repetições: " + rep);
-            var index = 0;
+            
             for (int i = 0; i < rep; i++)
             {
                 if (i == 0)
                 {
                     index += 7;
-
+                    
                     var a = charA[index];
+                    if (a.Equals('0'))
+                    {
+                        a = '1';
+                    }
+                    else
+                    {
+                        a = '0';
+                    }
                     var b = charA[index - 1];
-                    charA[index] = b;
-                    charA[index - 1] = a;
+
+                    if (b.Equals('0'))
+                    {
+                        b = '1';
+                    }
+                    else
+                    {
+                        b = '0';
+                    }
+
+                    charA[index] = a;
+                    charA[index - 1] = b;
                     //Console.WriteLine("mudou");
                     //Console.WriteLine(charA);
                 }
@@ -59,19 +78,39 @@ namespace DesafioIntelitrader
 
                     index += 8;
                     var a = charA[index];
+                    if (a.Equals('0'))
+                    {
+                        a = '1';
+                    }
+                    else
+                    {
+                        a = '0';
+                    }
                     var b = charA[index - 1];
-                    charA[index] = b;
-                    charA[index - 1] = a;
+
+                    if (b.Equals('0'))
+                    {
+                        b = '1';
+                    }
+                    else
+                    {
+                        b = '0';
+                    }
+
+                    charA[index] = a;
+                    charA[index - 1] = b;
                     //Console.WriteLine(charA);
 
 
 
-                   
+
 
                 }
                 
 
             }
+
+            //separando as string em 4 bits
             var txt2=new String(charA);
             //Console.WriteLine(txt2);
             rep = 0;
@@ -103,6 +142,8 @@ namespace DesafioIntelitrader
 
                 }
             }
+
+            //trocando 4 bits pelos proximos
             var list2 = new List<string>();
             index = 0;
             for (int i = 0; i < list.Count/2; i++)
@@ -115,11 +156,12 @@ namespace DesafioIntelitrader
                 index += 2;
 
             }
-            String bin="";
+            //criando string bin
+            String bin ="";
             
             list2.ForEach((i) =>bin+=i);
             //Console.WriteLine(bin=="efhgabcdmnpoijkl");
-
+            //------------------------
             Console.WriteLine(BitsToAscii(bin));
             Console.WriteLine(BitsToAscii(txt));
 
