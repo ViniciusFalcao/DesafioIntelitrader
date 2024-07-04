@@ -27,10 +27,18 @@ namespace DesafioIntelitrader
 {
     internal class Livro
     {
+        public double _valor { get; set; }
+
         public int _quantidade{get;set;}
 
-        public int _valor { get; set; }
+        public Livro(double valor,int quantidade) {
 
+            _valor = valor;
+            _quantidade = quantidade;
+
+        }  
+
+      
     }
 
     internal class Notificacao
@@ -38,11 +46,12 @@ namespace DesafioIntelitrader
         public int _posicao { get; set; }
 
         public int _acao { get; set; }
+        public double _valor { get; set; }
+
 
         public int _quantidade { get; set; }
 
-        public int _valor { get; set; }
-
+       
 
         public Notificacao(int pos,int acao,double valor,int quantidade) {
             _posicao = pos;
@@ -89,13 +98,84 @@ namespace DesafioIntelitrader
                 Console.WriteLine("Digite a quantidade de livros :");
                 var quantidade = Convert.ToInt32(Console.ReadLine());
 
-
-                var notificacao=new Notificacao(pos,acao,valor,quantidade);  
-
+                Console.Clear();
 
 
-
+                var notificacao=new Notificacao(pos,acao,valor,quantidade);
+                lista_not.Add(notificacao);
             }
+
+            
+
+            for (int i = 0; i < repeticoes; i++)
+            {
+                var not = lista_not.ElementAt(i);
+
+
+                switch (not._acao)
+                {
+                    case 0:
+                        
+                        try
+                        {
+                            Console.WriteLine("value:" + not._valor);
+
+                            var novol = new Livro(not._valor, not._quantidade);
+
+                            _listaLivros[not._posicao] =novol;
+                        }
+                        catch (ArgumentOutOfRangeException)
+                        {
+                            _listaLivros.Add(new Livro(not._valor, not._quantidade));
+                        }
+                        break;
+                    case 1:
+                        var registrolivro = _listaLivros.ElementAtOrDefault(not._posicao);
+
+                        if (registrolivro != null)
+                        {
+
+                            if (not._valor!=0)
+                            {
+                                registrolivro._valor = not._valor;
+                            }
+                            if (not._quantidade != 0)
+                            {
+                                registrolivro._quantidade = not._quantidade;
+                            }
+                            _listaLivros[not._posicao] = registrolivro;
+                        }
+
+                        break;
+                    case 2:
+                        
+
+                        try
+                        {
+                            _listaLivros.RemoveAt(not._posicao);
+
+                        }
+                        catch (Exception)
+                        {
+
+                            Console.WriteLine("não existe esse registro para deletar");
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            Console.WriteLine("Range" + _listaLivros.Count);
+            var index = 0;
+            _listaLivros.ForEach((i) => {
+                Console.WriteLine("Valor:" + i._valor);
+                Console.WriteLine("quantidade:" + i._quantidade);
+                
+
+
+            });
+          
 
 
         }
