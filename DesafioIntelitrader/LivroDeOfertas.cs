@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
@@ -86,14 +87,14 @@ namespace DesafioIntelitrader
 
 
                 Console.WriteLine("Digite a posição do produto na lista:");
-                var pos=Convert.ToInt32(Console.ReadLine());
-
+                var pos = Convert.ToInt32(Console.ReadLine());
+                pos -= 1;
                 Console.WriteLine("Digite o tipo de ação : \n" +
                     "(0 - INSERIR 1 - MODIFICAR 2 - DELETAR )");
                 var acao = Convert.ToInt32(Console.ReadLine());
 
                 Console.WriteLine("Digite os valores  do livro : ");
-                var valor = Convert.ToDouble(Console.ReadLine());
+                var valor = Convert.ToDouble(Console.ReadLine(),CultureInfo.InvariantCulture);
 
                 Console.WriteLine("Digite a quantidade de livros :");
                 var quantidade = Convert.ToInt32(Console.ReadLine());
@@ -118,7 +119,7 @@ namespace DesafioIntelitrader
                         
                         try
                         {
-                            Console.WriteLine("value:" + not._valor);
+                            //Console.WriteLine("value:" + not._valor);
 
                             var novol = new Livro(not._valor, not._quantidade);
 
@@ -166,12 +167,14 @@ namespace DesafioIntelitrader
                         break;
                 }
             }
-            Console.WriteLine("Range" + _listaLivros.Count);
+            //Console.WriteLine("Range" + _listaLivros.Count);
             var index = 0;
             _listaLivros.ForEach((i) => {
-                Console.WriteLine("Valor:" + i._valor);
+                var n = index + 1;
+                Console.WriteLine("Posição:"+n);
+                Console.WriteLine("Valor:" + i._valor.ToString());
                 Console.WriteLine("quantidade:" + i._quantidade);
-                
+                index++;
 
 
             });
@@ -187,24 +190,16 @@ namespace DesafioIntelitrader
             Thread.Sleep(2000);
             Console.Clear();
             
-            Console.WriteLine("1 - Ver Ofertas de livros ");
 
-            Console.WriteLine("2 - Notificar atualizações ");
+            Console.WriteLine("1 - Notificar atualizações ");
 
             var keyinfo=Console.ReadKey();
             Console.Clear();
 
 
-            if (keyinfo.Key==ConsoleKey.NumPad2|| keyinfo.Key==ConsoleKey.D2)
+            if (keyinfo.Key==ConsoleKey.NumPad1|| keyinfo.Key==ConsoleKey.D1)
             {
                 iniciarNotificacoes();
-            }else if (keyinfo.Key==ConsoleKey.D1 || keyinfo.Key == ConsoleKey.NumPad2)
-            {
-                Console.WriteLine("vou implementar ");
-            }
-            else
-            {
-                Console.WriteLine("ERRO: (Digite um a tecla 1 ou 2)");
             }
 
 
