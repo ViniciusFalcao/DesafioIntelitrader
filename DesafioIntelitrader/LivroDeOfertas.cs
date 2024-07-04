@@ -74,6 +74,7 @@ namespace DesafioIntelitrader
 
             Console.WriteLine("Digite o número de registros que deseja fazer :");
             var notificacoes=Console.ReadLine();
+            Console.Clear();    
             return Convert.ToInt32(notificacoes);
         }
 
@@ -171,9 +172,9 @@ namespace DesafioIntelitrader
             var index = 0;
             _listaLivros.ForEach((i) => {
                 var n = index + 1;
-                Console.WriteLine("Posição:"+n);
-                Console.WriteLine("Valor:" + i._valor.ToString());
-                Console.WriteLine("quantidade:" + i._quantidade);
+                Console.Write("{Posição:"+n+" , ");
+                Console.Write("Valor:" + i._valor.ToString("F2").Replace(",",".")+" , ");
+                Console.Write("Quantidade:" + i._quantidade+"}\n");
                 index++;
 
 
