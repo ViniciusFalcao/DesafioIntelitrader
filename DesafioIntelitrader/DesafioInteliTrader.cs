@@ -36,11 +36,11 @@ namespace DesafioIntelitrader
             var index = 0;
             var txt=str.Replace(" ","");
             //var txt = "abcdefghijklmnop";
-            Console.WriteLine(txt.Length);
+            //Console.WriteLine(txt.Length);
             var charA = txt.ToCharArray();
             //subistituindo ultimo e penultimo
             var rep = txt.Length / 8;
-            Console.WriteLine("repetições: " + rep);
+            //Console.WriteLine("repetições: " + rep);
             
             for (int i = 0; i < rep; i++)
             {
@@ -162,13 +162,9 @@ namespace DesafioIntelitrader
             list2.ForEach((i) =>bin+=i);
             //Console.WriteLine(bin=="efhgabcdmnpoijkl");
             //------------------------
-            Console.WriteLine(BitsToAscii(bin));
-            Console.WriteLine(BitsToAscii(txt));
-
-
-            //var data = GetBytesFromBinaryString(bin);
-            //var text = Encoding.ASCII.GetString(data);
-            //Console.WriteLine(text);
+            Console.WriteLine("Desafio 1 \n" +
+                "Entrada:" +str+"\n"+
+                "\nSaida:"+BitsToAscii(bin));
             return bin;
         }
 
